@@ -77,3 +77,22 @@ function todoList() {
 }
 
 // todoList();
+let wholeDaySum ='';
+let hours = Array.from({length:18},(elem,idx)=>`${6+idx}:00 - ${7+idx}:00`);
+hours.forEach(function(elem,idx){
+wholeDaySum+=` <div class="day-planner-time">
+                    <p>${elem}</p>
+                    <input id=${idx} type="text" placeholder="...">
+                </div>`;
+})
+let dayPlanData ={
+
+}
+let dayPlanner = document.querySelector(".day-planner");
+dayPlanner.innerHTML=wholeDaySum;
+let dayPlannerInput = document.querySelectorAll(".day-planner input");
+dayPlannerInput.forEach(function(elem){
+elem.addEventListener("input",function(e){
+  console.log(e.target.id);
+})})
+
