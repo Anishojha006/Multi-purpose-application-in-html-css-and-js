@@ -24,7 +24,7 @@ if (localStorage.getItem("currentTask")) {
   console.log("Task list is empty");
 }
 
-// openFeatures();
+openFeatures();
 
 function todoList() {
   function renderTask() {
@@ -76,23 +76,59 @@ function todoList() {
   });
 }
 
-// todoList();
-let wholeDaySum ='';
-let hours = Array.from({length:18},(elem,idx)=>`${6+idx}:00 - ${7+idx}:00`);
-hours.forEach(function(elem,idx){
-wholeDaySum+=` <div class="day-planner-time">
+todoList();
+function dailyPlanner() {
+  let dayPlanner = document.querySelector(".day-planner");
+  let dayPlanData = JSON.parse(localStorage.getItem("dayPlanData")) || {};
+  let wholeDaySum = "";
+  let hours = Array.from(
+    { length: 18 },
+    (elem, idx) => `${6 + idx}:00 - ${7 + idx}:00`,
+  );
+
+  hours.forEach(function (elem, idx) {
+    let savedData = dayPlanData[idx] || " ";
+
+    wholeDaySum += ` <div class="day-planner-time">
                     <p>${elem}</p>
-                    <input id=${idx} type="text" placeholder="...">
+                    <input id=${idx} type="text" placeholder="..." value =${savedData}>
                 </div>`;
-})
-let dayPlanData ={
+  });
 
+  dayPlanner.innerHTML = wholeDaySum;
+  dayPlanner.addEventListener("input", function (e) {
+    if (e.target.tagName === "INPUT") {
+      dayPlanData[e.target.id] = e.target.value;
+      localStorage.setItem("dayPlanData", JSON.stringify(dayPlanData));
+    }
+  });
 }
-let dayPlanner = document.querySelector(".day-planner");
-dayPlanner.innerHTML=wholeDaySum;
-let dayPlannerInput = document.querySelectorAll(".day-planner input");
-dayPlannerInput.forEach(function(elem){
-elem.addEventListener("input",function(e){
-  console.log(e.target.id);
-})})
+dailyPlanner();
 
+async function getQuotes() {
+  try {
+    let res = await fetch(
+      "https://api.api-ninjas.com/v2/quotes?categories=success,wisdom",
+      {
+        method: "GET",
+        headers: {
+          "X-Api-Key": "YOUR_API_KEY_HERE"
+        }
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Request failed");
+    }
+
+    let data = await res.json();
+    console.log(data);
+
+  } catch (err) {
+    console.log("Error:", err);
+  }
+}
+
+getQuotes();
+
+  

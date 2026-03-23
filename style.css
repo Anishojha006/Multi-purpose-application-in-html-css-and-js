@@ -199,7 +199,7 @@ summary{
   transition: all ease 0.5s;
 }
  p{
-  font-size: 15px;
+  font-size: 18px;
   color: black;
   transition: all ease 0.5s;
 }
@@ -237,7 +237,7 @@ summary{
 }
 .btnanddetail{
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
 }
 .mark-imp{
@@ -254,9 +254,6 @@ scale: 2;
 }
 .mark-imp label{
 font-size: 21px;
-}
-.daily-planner-fullpage{
-  display: block;
 }
 .daily-planner-fullpage h2{
   font-size: 70px;
@@ -286,7 +283,8 @@ font-size: 21px;
   top: 12%;
   left: 1%;
   color: white;
-  font-family: 18px;
+  font-family: 16px;
+  color: var(--tri1);
 }
 .day-planner .day-planner-time input{
   padding: 20px 45px;
@@ -294,8 +292,86 @@ font-size: 21px;
   background-color: var(--sec);
   border-radius: 5px;
   border: none;
-  font-size: 32px;
+  font-size: 35px;
   padding-top: 34px;
   outline: none;
+}
+.motivational-fullpage{
+  display: block;
+  /* position: relative; */
+}
+.motivational-fullpage .motivation-container{
+ height: 400px;
+  width: 80%;
+  background-color: var(--tri2);
+  position: absolute;
+  border-radius: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.motivational-fullpage .motivation-container::after{
+  content: '';
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--tri1);
+  filter: blur(100px);
+  border-radius: 50px;
+  scale: 1.15;
+  z-index: 8;
+}
+.motivational-fullpage .motivation-container .motivation-wrapper{
+  z-index: 10;
+  position: absolute;
+width: 100%;
+background-color: var(--tri1);
+padding: 17px;
+border-radius: 30px;
+}
+.motivation-1{
+   display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.motivation-1 h2{
+   background-color: var(--tri2);
+  padding: 30px;
+  border-radius: 20px;
+  font-size: 40px;
+  width: fit-content;
+  font-weight: 400;
+  text-align: right;
+}
+.motivation-2{
+  margin-top: 20px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.motivation-2 h1{
+  font-size:65px;
+  font-weight: 700;
+  color: var(--sec);
+}
+.motivation-3{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.motivation-3 h2{
+  background-color: var(--tri2);
+  padding: 30px;
+  border-radius: 20px;
+  font-size: 40px;
+  width: fit-content;
+  font-weight: 400;
+  text-align: right;
+}
+.motivation-container .motivation-wrapper img{
+  position: absolute;
+  right: 5%;
+  opacity: 0.5;
+  top: 5%;
+  height: 120px;
 }
 
