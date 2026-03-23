@@ -53,8 +53,8 @@ section.allElems {
   position: absolute;
 }
 .elem {
-  height: 400px;
-  width: 330px;
+  height: 350px;
+  width: 250px;
   background-color: #feba17;
   border-radius: 10px;
   overflow: hidden;
@@ -96,7 +96,7 @@ section.allElems {
   background-color: var(--red);
   border-radius: 10px;
   padding: 15px 22px;
-  font-size: 25px;
+  font-size: 17px;
   font-weight: 500;
   border: none;
   cursor: pointer;
@@ -105,7 +105,7 @@ section.allElems {
   scale: 0.97;
 }
 .todo-list-fullpage h2 {
-  font-size: 65px;
+  font-size: 45px;
 }
 .todo-list-fullpage .todo-container {
   height: 80%;
@@ -135,7 +135,7 @@ section.allElems {
 .todo-list-fullpage .todo-container .addTask form #task-input {
   padding: 10px 25px;
   width: 100%;
-  font-size: 29px;
+  font-size: 17px;
   background-color: var(--pri);
   color: var(--sec);
   border-radius: 5px;
@@ -147,7 +147,7 @@ section.allElems {
 .todo-list-fullpage .todo-container .addTask form textarea {
   padding: 10px 25px;
   width: 100%;
-  font-size: 29px;
+  font-size: 17px;
   background-color: var(--pri);
   color: var(--sec);
   border-radius: 5px;
@@ -174,7 +174,7 @@ section.allElems {
 .todo-list-fullpage .todo-container .allTask {
   width: 65%;
   background-color: var(--tri2);
-  height: 100%;
+  height:100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -256,7 +256,8 @@ scale: 2;
 font-size: 21px;
 }
 .daily-planner-fullpage h2{
-  font-size: 70px;
+      font-size: 49px;
+
 }
 .daily-planner-fullpage .day-planner{
  background-color: var(--tri2);
@@ -287,18 +288,25 @@ font-size: 21px;
   color: var(--tri1);
 }
 .day-planner .day-planner-time input{
-  padding: 20px 45px;
+  padding: 15px 25px;
   width: 100%;
   background-color: var(--sec);
   border-radius: 5px;
   border: none;
-  font-size: 35px;
+  font-size: 20px;
   padding-top: 34px;
   outline: none;
 }
 .motivational-fullpage{
-  display: block;
+  /* display: block; */
   /* position: relative; */
+}
+.motivationFull-page{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .motivational-fullpage .motivation-container{
  height: 400px;
@@ -306,9 +314,6 @@ font-size: 21px;
   background-color: var(--tri2);
   position: absolute;
   border-radius: 40px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
 }
 .motivational-fullpage .motivation-container::after{
   content: '';
@@ -326,8 +331,9 @@ font-size: 21px;
   position: absolute;
 width: 100%;
 background-color: var(--tri1);
-padding: 17px;
+padding: 20px;
 border-radius: 30px;
+border: 6px solid  var(--tri2);
 }
 .motivation-1{
    display: flex;

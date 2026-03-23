@@ -104,31 +104,16 @@ function dailyPlanner() {
   });
 }
 dailyPlanner();
-
-async function getQuotes() {
-  try {
-    let res = await fetch(
-      "https://api.api-ninjas.com/v2/quotes?categories=success,wisdom",
-      {
-        method: "GET",
-        headers: {
-          "X-Api-Key": "YOUR_API_KEY_HERE"
-        }
-      }
-    );
-
-    if (!res.ok) {
-      throw new Error("Request failed");
-    }
-
-    let data = await res.json();
-    console.log(data);
-
-  } catch (err) {
-    console.log("Error:", err);
+function motivationalQoutes() {
+  let Qoute = document.querySelector(".motivation-2 h1");
+  let Author = document.querySelector(".motivation-3 h2");
+  async function getQuotes() {
+    let response = await fetch("https://api.quotable.io/random");
+    let data = await response.json();
+    console.log(Qoute);
+    Qoute.innerHTML = data.content;
+    Author.innerHTML = "- " + data.author;
   }
+  getQuotes();
 }
-
-getQuotes();
-
-  
+motivationalQoutes();
