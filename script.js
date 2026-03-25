@@ -117,3 +117,92 @@ function motivationalQoutes() {
   getQuotes();
 }
 motivationalQoutes();
+
+function Pomodoro(){
+  let timer = document.querySelector(".pomo-timer h1");
+let startBtn = document.querySelector(".pomo-timer .start-timer");
+let pauseBtn = document.querySelector(".pomo-timer .pause-timer");
+let resetBtn = document.querySelector(".pomo-timer .reset-timer");
+let session = document.querySelector(".pomodoro-fullpage .session");
+let isWorkSession = true;
+let timerInterval = null;
+let totalSeconds = 25 * 60;
+function upDateTime() {
+  let minutes = Math.floor(totalSeconds / 60);
+  let seconds = Math.floor(totalSeconds % 60);
+  seconds = seconds;
+  timer.innerHTML = `${String(minutes).padStart('2','0')}:${String(seconds).padStart('2','0')}`;
+}
+
+function pauseTimmer(){
+  clearInterval(timerInterval);
+  // timerInterval =null;
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+   if(isWorkSession){
+   
+       timerInterval = setInterval(() => {
+    if (totalSeconds === 0) {
+      pauseTimmer();
+       timer.innerHTML = '05:00';
+       session.innerHTML ="Take a Break";
+       totalSeconds=5*60;
+       session.style.backgroundColor ='var(--blue)';
+      isWorkSession=false;
+
+    } else {
+      totalSeconds--;
+      
+      upDateTime();
+    }
+  }, 1000);
+   }
+   else{
+     
+       
+       timerInterval = setInterval(() => {
+    if (totalSeconds === 0) {
+      pauseTimmer();
+      session.innerHTML ="Work Session";
+      session.style.backgroundColor ='var(--green)';
+      totalSeconds =25*60;
+      isWorkSession=true;
+      upDateTime();
+
+    } else {
+      totalSeconds--;
+      timer.innerHTML = '25:00';
+      
+      upDateTime();
+    }
+  },1000);
+   }
+ 
+   
+}
+function reset(){
+  clearInterval(timerInterval);
+  timerInterval = null;
+  totalSeconds = 1500;
+   session.innerHTML ="Work Session";
+        session.style.backgroundColor ='var(--green)';
+  upDateTime();
+}
+
+startBtn.addEventListener("click", function () {
+  startTimer();
+});
+pauseBtn.addEventListener("click",function(){
+  pauseTimmer();
+})
+resetBtn.addEventListener("click",function(){
+  reset();
+})
+
+
+
+}
+Pomodoro();

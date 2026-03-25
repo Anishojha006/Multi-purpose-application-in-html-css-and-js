@@ -3,8 +3,9 @@
   --sec: #381c0a;
   --tri1: #feba17;
   --tri2: #74512d;
-  --green:green;
+  --green:rgb(9, 138, 89);
   --red:red;
+  --blue:rgb(0, 191, 225);
 }
 @font-face {
   font-family: aeonik;
@@ -302,14 +303,13 @@ font-size: 21px;
   /* position: relative; */
 }
 .motivationFull-page{
-  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 5rem;
 }
 .motivational-fullpage .motivation-container{
- height: 400px;
   width: 80%;
   background-color: var(--tri2);
   position: absolute;
@@ -344,7 +344,7 @@ border: 6px solid  var(--tri2);
    background-color: var(--tri2);
   padding: 30px;
   border-radius: 20px;
-  font-size: 40px;
+  font-size: 23px;
   width: fit-content;
   font-weight: 400;
   text-align: right;
@@ -355,7 +355,7 @@ border: 6px solid  var(--tri2);
   margin-bottom: 30px;
 }
 .motivation-2 h1{
-  font-size:65px;
+  font-size:40px;
   font-weight: 700;
   color: var(--sec);
 }
@@ -368,7 +368,7 @@ border: 6px solid  var(--tri2);
   background-color: var(--tri2);
   padding: 30px;
   border-radius: 20px;
-  font-size: 40px;
+  font-size: 20px;
   width: fit-content;
   font-weight: 400;
   text-align: right;
@@ -380,4 +380,40 @@ border: 6px solid  var(--tri2);
   top: 5%;
   height: 120px;
 }
-
+.pomodoro-fullpage h2{
+  font-size: 60px;
+}
+.pomodoro-fullpage  .pomo-timer{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.pomo-timer h1{
+  font-size: 140px;
+}
+.pomo-timer button{
+  background-color: var(--tri2);
+  padding:13px 35px;
+  font-size: 22px;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 7px 7px 0px black;
+  transition: all ease 0.1s;
+  font-weight: 700;
+}
+.pomo-timer button:active{
+ box-shadow: 0px 0px 0px black;
+}
+.pomodoro-fullpage .session{
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%,0);
+  background-color: var(--green);
+  padding: 20px 40px;
+  font-size: 25px;
+  border-radius: 5px;
+}
