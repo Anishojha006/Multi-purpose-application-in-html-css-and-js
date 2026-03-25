@@ -206,3 +206,57 @@ resetBtn.addEventListener("click",function(){
 
 }
 Pomodoro();
+let lat =null;
+let lon =null;
+
+
+function navbarFunctionality(){
+  function getLocation(){
+ return  new Promise ((resolve,reject)=>{
+   navigator.geolocation.getCurrentPosition(resolve, reject);
+ })
+
+}
+
+let apiKey = 	`3b15ab7921914c5fa0305822262503`;
+let data = null;
+let headerDateH1 = document.querySelector(".header1 h1");
+let headerDateH4 = document.querySelector(".header1 h4")
+async function wheatherAPICall(){
+   let position = await getLocation();
+
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+ 
+  console.log(lat,lon);
+  
+  let response = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
+  );
+  data = await response.json();
+  let state =  data.location.region;
+  
+  let town = data.location.name;
+  headerDateH4.innerHTML = `${town} ${state}`;
+  
+}
+wheatherAPICall();
+var date =null;
+function timeDate(){
+  date = new Date();
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let dayName = date.toLocaleDateString("en-US", { weekday: "long" });
+  let seconds = date.getSeconds();
+  
+
+ if (hours > 12) {
+  headerDateH1.innerHTML = `${hours - 12}:${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds} PM ${dayName}`;
+} else {
+  headerDateH1.innerHTML = `${hours === 0 ? 12 : hours}:${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds} AM ${dayName}`;
+}
+}
+setInterval(timeDate,1000);
+
+}
+navbarFunctionality();
