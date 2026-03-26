@@ -6,6 +6,8 @@
   --green:rgb(9, 138, 89);
   --red:red;
   --blue:rgb(0, 191, 225);
+  --gray:gray;
+  --black:black;
 }
 @font-face {
   font-family: aeonik;
@@ -37,15 +39,15 @@ html {
   background-color: var(--sec);
 }
 nav {
-  position: fixed;
   width: 100%;
   height: 60px;
   background-color: var(--tri2);
+  z-index: 1;
 }
 section.allElems {
-  height: 100%;
   width: 100%;
-  padding: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
   position: absolute;
 }
 section.allElems .allFeatures{
@@ -56,7 +58,8 @@ gap: 40px;
 }
 .allElems header{
   height: 300px;
-  width: 10%0%;
+  width: 100%;
+  margin-top: 30px;
  background: url(https://images.unsplash.com/photo-1419833173245-f59e1b93f9ee?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c2t5fGVufDB8MHwwfHx8MA%3D%3D);
  background-size: cover;
  background-position: top;
@@ -66,43 +69,54 @@ gap: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 45px;
+  padding: 35px 50px;
+
 }
 
 header .header1 h1{
  font-size:65px;
  font-weight: 700;
- text-shadow: 2px 2px 5px gray;
+ text-shadow: 2px 2px 5px var(--gary);
+ margin-bottom: 40px;
+}
+header .header1 h2{
+ font-size:30px;
+ font-weight: 500;
 }
 header .header1 h4{
- font-size:50px;
-font-weight: 500;
-text-shadow: 2px 2px 5px gray;
+  font-size:50px;
+  font-weight: 500;
+  text-shadow: 2px 2px 5px var(--gray);
+  margin-bottom: 40px;
 }
 header .header2 h2{
  font-size:60px;
 font-weight: 700;
+text-shadow: 2px 2px 5px var(--gray);
 }
 header .header2 h4{
- font-size:30px;
-  font-weight: 500;
+font-size:39px;
+font-weight: 500;
+text-shadow: 2px 2px 5px var(--gray);
+margin-bottom: 2rem;
 }
 header .header2 h3{
- font-size:25px;
-  font-weight: 500;
-  opacity: 0.8;
+  
+text-shadow: 2px 2px 5px var(--gray);
+font-size:16px;
+font-weight: 500;
+opacity: 0.8;
 }
-
 .elem {
-  height: 350px;
-  width: 250px;
-  background-color: #feba17;
+  height: 315px;
+  width: 245px;
+  background-color: var(--tri1);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   transition: all ease 0.2s;
   cursor: pointer;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 20px black;
 }
 .elem:active {
   scale: 0.97;
@@ -130,6 +144,8 @@ header .header2 h3{
   padding: 40px;
   display: none;
   position: absolute;
+  top: 0;
+  z-index: 999;
 }
 .back {
   position: absolute;
@@ -235,13 +251,13 @@ header .header2 h3{
 }
 
 summary{
-  color: black;
+  color: var(--black);
   font-size:20px;
   transition: all ease 0.5s;
 }
  p{
   font-size: 18px;
-  color: black;
+  color: var(--black);
   transition: all ease 0.5s;
 }
 .task h5{
@@ -338,10 +354,7 @@ font-size: 21px;
   padding-top: 34px;
   outline: none;
 }
-.motivational-fullpage{
-  /* display: block; */
-  /* position: relative; */
-}
+
 .motivationFull-page{
   width: 100%;
   display: flex;
@@ -440,12 +453,12 @@ border: 6px solid  var(--tri2);
   margin: 10px;
   border-radius: 5px;
   border: none;
-  box-shadow: 7px 7px 0px black;
+  box-shadow: 7px 7px 0px var(--black);
   transition: all ease 0.1s;
   font-weight: 700;
 }
 .pomo-timer button:active{
- box-shadow: 0px 0px 0px black;
+ box-shadow: 0px 0px 0px var(--black);
 }
 .pomodoro-fullpage .session{
   position: absolute;
@@ -456,4 +469,40 @@ border: 6px solid  var(--tri2);
   padding: 20px 40px;
   font-size: 25px;
   border-radius: 5px;
+}
+nav{
+  align-items: center;
+  height: 60px;
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+}
+.nav-in{
+  display: flex;
+  background-color: var(--tri2);
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  border-radius: 10px;
+}
+.nav-in h2{
+  font-size: 30px;
+  font-weight: 700;
+}
+.theme{
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: white;
+  transition: all ease 0.9s;
+  cursor: pointer;
+  user-select: none;
+}
+.theme h4{
+color: var(--sec);
+font-weight: 700;
+font-size: 20px;
+pointer-events: none;
+}
+.theme:active{
+  scale: 0.85;
 }

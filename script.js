@@ -5,7 +5,6 @@ function openFeatures() {
   let allfullElemsBackBtn = document.querySelectorAll(".fullElem .back");
   allElems.forEach(function (elem) {
     elem.addEventListener("click", function (e) {
-      console.log(elem.id);
       allfullElemsPage[elem.id].style.display = "block";
     });
   });
@@ -118,93 +117,137 @@ function motivationalQoutes() {
 }
 motivationalQoutes();
 
-function Pomodoro(){
-  let timer = document.querySelector(".pomo-timer h1");
-let startBtn = document.querySelector(".pomo-timer .start-timer");
-let pauseBtn = document.querySelector(".pomo-timer .pause-timer");
-let resetBtn = document.querySelector(".pomo-timer .reset-timer");
-let session = document.querySelector(".pomodoro-fullpage .session");
-let isWorkSession = true;
-let timerInterval = null;
-let totalSeconds = 25 * 60;
-function upDateTime() {
-  let minutes = Math.floor(totalSeconds / 60);
-  let seconds = Math.floor(totalSeconds % 60);
-  seconds = seconds;
-  timer.innerHTML = `${String(minutes).padStart('2','0')}:${String(seconds).padStart('2','0')}`;
-}
+function Pomodoro() {
+  const timerEl = document.querySelector(".pomo-timer h1");
+  const startBtn = document.querySelector(".start-timer");
+  const pauseBtn = document.querySelector(".pause-timer");
+  const resetBtn = document.querySelector(".reset-timer");
+  const sessionEl = document.querySelector(".session");
 
-function pauseTimmer(){
-  clearInterval(timerInterval);
-  // timerInterval =null;
-}
+  let isWorkSession = true;
+  let duration = 25 * 60; // seconds
+  let startTime = null;
+  let pausedTime = 0;
+  let interval = null;
 
-function startTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-   if(isWorkSession){
-   
-       timerInterval = setInterval(() => {
-    if (totalSeconds === 0) {
-      pauseTimmer();
-       timer.innerHTML = '05:00';
-       session.innerHTML ="Take a Break";
-       totalSeconds=5*60;
-       session.style.backgroundColor ='var(--blue)';
-      isWorkSession=false;
-
-    } else {
-      totalSeconds--;
-      
-      upDateTime();
+  // 🔁 Load saved state (optional but powerful)
+  function loadState() {
+    const saved = JSON.parse(localStorage.getItem("pomoState"));
+    if (saved) {
+      isWorkSession = saved.isWorkSession;
+      duration = saved.duration;
+      startTime = saved.startTime;
+      pausedTime = saved.pausedTime || 0;
     }
-  }, 1000);
-   }
-   else{
-     
-       
-       timerInterval = setInterval(() => {
-    if (totalSeconds === 0) {
-      pauseTimmer();
-      session.innerHTML ="Work Session";
-      session.style.backgroundColor ='var(--green)';
-      totalSeconds =25*60;
-      isWorkSession=true;
-      upDateTime();
+  }
 
+  function saveState() {
+    localStorage.setItem(
+      "pomoState",
+      JSON.stringify({
+        isWorkSession,
+        duration,
+        startTime,
+        pausedTime,
+      })
+    );
+  }
+
+  function updateUI(remaining) {
+    let min = Math.floor(remaining / 60);
+    let sec = remaining % 60;
+
+    timerEl.innerText =
+      `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+  }
+
+  function updateSessionUI() {
+    if (isWorkSession) {
+      sessionEl.innerText = "Work Session";
+      sessionEl.style.backgroundColor = "var(--green)";
     } else {
-      totalSeconds--;
-      timer.innerHTML = '25:00';
-      
-      upDateTime();
+      sessionEl.innerText = "Break Time";
+      sessionEl.style.backgroundColor = "var(--blue)";
     }
-  },1000);
-   }
+  }
+
+  function tick() {
+    let elapsed = Math.floor((Date.now() - startTime) / 1000);
+    let remaining = duration - elapsed;
+
+    if (remaining <= 0) {
+      switchSession();
+      return;
+    }
+
+    updateUI(remaining);
+  }
+
+  function startTimer() {
+    if (!startTime) {
+      startTime = Date.now() - pausedTime;
+    }
+
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+      tick();
+      saveState();
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    clearInterval(interval);
+    pausedTime = Date.now() - startTime;
+    saveState();
+  }
+
+  function resetTimer() {
+    clearInterval(interval);
+    isWorkSession = true;
+    duration = 25 * 60;
+    startTime = null;
+    pausedTime = 0;
+
+    updateSessionUI();
+    updateUI(duration);
+    localStorage.removeItem("pomoState");
+  }
+
+  function switchSession() {
+    clearInterval(interval);
+
+    if (isWorkSession) {
+      alert("Work session completed!");
+      isWorkSession = false;
+      duration = 5 * 60;
+    } else {
+      alert("Break finished!");
+      isWorkSession = true;
+      duration = 25 * 60;
+    }
+
+    startTime = Date.now();
+    pausedTime = 0;
+
+    updateSessionUI();
+    startTimer();
+  }
+  loadState();
+  updateSessionUI();
+
+  if (startTime) {
+    startTimer(); // resume automatically
+  } else {
+    updateUI(duration);
+  }
+
  
-   
-}
-function reset(){
-  clearInterval(timerInterval);
-  timerInterval = null;
-  totalSeconds = 1500;
-   session.innerHTML ="Work Session";
-        session.style.backgroundColor ='var(--green)';
-  upDateTime();
+  startBtn.addEventListener("click", startTimer);
+  pauseBtn.addEventListener("click", pauseTimer);
+  resetBtn.addEventListener("click", resetTimer);
 }
 
-startBtn.addEventListener("click", function () {
-  startTimer();
-});
-pauseBtn.addEventListener("click",function(){
-  pauseTimmer();
-})
-resetBtn.addEventListener("click",function(){
-  reset();
-})
-
-
-
-}
 Pomodoro();
 let lat =null;
 let lon =null;
@@ -221,26 +264,36 @@ function navbarFunctionality(){
 let apiKey = 	`3b15ab7921914c5fa0305822262503`;
 let data = null;
 let headerDateH1 = document.querySelector(".header1 h1");
-let headerDateH4 = document.querySelector(".header1 h4")
+let headerDateH4 = document.querySelector(".header1 h4");
+let DateH2 = document.querySelector(".header1 h2");
+let temp = document.querySelector(".header2 h2");
+let possibilityOfWheather = document.querySelector(".header2 h4");
+let wind = document.querySelector(".wind span");
+let precipiatation = document.querySelector(".precipiatation span");
+let humidity = document.querySelector(".humidity span");
+
+// Updating and loading wheather
 async function wheatherAPICall(){
    let position = await getLocation();
 
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
- 
-  console.log(lat,lon);
-  
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
   let response = await fetch(
     `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`
   );
   data = await response.json();
+  wind.innerHTML= `${data.current.wind_kph} Km/h`;
+  precipiatation.innerHTML=`${data.current.precip_in} %`;
+  humidity.innerHTML=`${data.current.
+humidity} %`
   let state =  data.location.region;
-  
   let town = data.location.name;
   headerDateH4.innerHTML = `${town} ${state}`;
+  temp.innerHTML=`${data.current.temp_c}°C`
+  possibilityOfWheather.innerHTML= `${data.current.condition.text}`
   
 }
-wheatherAPICall();
+
 var date =null;
 function timeDate(){
   date = new Date();
@@ -248,6 +301,15 @@ function timeDate(){
   let hours = date.getHours();
   let dayName = date.toLocaleDateString("en-US", { weekday: "long" });
   let seconds = date.getSeconds();
+
+let day = date.getDate();
+let month = date.toLocaleString('en-US', { month: 'long' });
+let year = date.getFullYear();
+let resultsDate =`${day} ${month} ${year}`;
+DateH2.textContent =resultsDate;
+wheatherAPICall();
+
+
   
 
  if (hours > 12) {
@@ -260,3 +322,39 @@ setInterval(timeDate,1000);
 
 }
 navbarFunctionality();
+
+let theme = document.querySelector(".theme");
+let rootElement = document.documentElement;
+let flag = 0;
+theme.addEventListener("click",  function(){
+  if(flag ===0){
+  rootElement.style.setProperty('--pri','#DFD0B8');
+  rootElement.style.setProperty('--sec','#222831');
+  rootElement.style.setProperty('--tri1','#948979');
+  rootElement.style.setProperty('--tri2','#393E46');
+    flag =1;
+  }
+  else if(flag === 1){
+   rootElement.style.setProperty('--pri','#feba17');
+  rootElement.style.setProperty('--sec','#74512d');
+  rootElement.style.setProperty('--tri1','#948979');
+  rootElement.style.setProperty('--tri2','#f8f4e1');
+ flag=2;
+  }
+  else if(flag ===2){
+   rootElement.style.setProperty('--pri','#B0E4CC');
+  rootElement.style.setProperty('--sec','#408A71');
+  rootElement.style.setProperty('--tri1','#285A48');
+  rootElement.style.setProperty('--tri2','#091413');
+  flag=3;
+  }
+  else if(flag === 3){
+     rootElement.style.setProperty('--pri','#f8f4e1');
+  rootElement.style.setProperty('--sec','#381c0a');
+  rootElement.style.setProperty('--tri1','#feba17');
+  rootElement.style.setProperty('--tri2','#74512d');
+  flag=0;
+  }
+  
+  
+})
