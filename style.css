@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 :root {
   --pri: #f8f4e1;
   --sec: #381c0a;
@@ -27,7 +34,8 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   font-family: aeonik;
   color: var(--pri);
 }
@@ -51,9 +59,14 @@ section.allElems {
   position: absolute;
 }
 section.allElems .allFeatures{
+display: -webkit-box;
+display: -ms-flexbox;
 display: flex;
-flex-wrap: wrap;
-align-items: flex-start;
+-ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+-webkit-box-align: start;
+    -ms-flex-align: start;
+        align-items: flex-start;
 gap: 40px;
 }
 .allElems header{
@@ -66,9 +79,15 @@ gap: 40px;
  background-repeat: no-repeat;
   margin-bottom: 30px;
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 35px 50px;
 
 }
@@ -114,9 +133,12 @@ opacity: 0.8;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  -webkit-transition: all ease 0.2s;
+  -o-transition: all ease 0.2s;
   transition: all ease 0.2s;
   cursor: pointer;
-  box-shadow: 5px 5px 20px black;
+  -webkit-box-shadow: 5px 5px 20px black;
+          box-shadow: 5px 5px 20px black;
 }
 .elem:active {
   scale: 0.97;
@@ -124,8 +146,10 @@ opacity: 0.8;
 .elem img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 .elem h2 {
   position: absolute;
@@ -168,8 +192,12 @@ opacity: 0.8;
   height: 80%;
   width: 100%;
   margin-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .todo-list-fullpage .todo-container .addTask {
   width: 33%;
@@ -184,9 +212,16 @@ opacity: 0.8;
   border-radius: 20px;
 }
 .todo-list-fullpage .todo-container .addTask form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding: 30px;
 }
 .todo-list-fullpage .todo-container .addTask form #task-input {
@@ -223,6 +258,8 @@ opacity: 0.8;
   border: none;
   outline: none;
   margin-bottom: 20px;
+  -webkit-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
   transition: all ease 0.3s;
 }
 .todo-list-fullpage .todo-container .addTask form button:active {
@@ -233,16 +270,29 @@ opacity: 0.8;
   background-color: var(--tri2);
   height:100%;
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding: 30px;
   overflow: auto;
 }
 .task{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
   background-color:var(--pri);
   padding: 20px 30px;
@@ -253,18 +303,26 @@ opacity: 0.8;
 summary{
   color: var(--black);
   font-size:20px;
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
   transition: all ease 0.5s;
 }
  p{
   font-size: 18px;
   color: var(--black);
+  -webkit-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
   transition: all ease 0.5s;
 }
 .task h5{
   color: var(--sec);
   font-size: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   gap: 5px;
 }
 .task h5 span{ 
@@ -293,14 +351,24 @@ summary{
   scale: 0.95;
 }
 .btnanddetail{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 0.5rem;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .mark-imp{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
- align-items: center;
- justify-content: flex-start;
+ -webkit-box-align: center;
+     -ms-flex-align: center;
+         align-items: center;
+ -webkit-box-pack: start;
+     -ms-flex-pack: start;
+         justify-content: flex-start;
  padding: 10px 10px;
  margin-bottom: 20px;
  width: 100%;
@@ -323,15 +391,26 @@ font-size: 21px;
  width: 100%;
  border-radius: 10px;
  padding: 30px;
+ display: -webkit-box;
+ display: -ms-flexbox;
  display: flex;
- flex-wrap: wrap;
- align-items:flex-start;
- justify-content: space-between;
+ -ms-flex-wrap: wrap;
+     flex-wrap: wrap;
+ -webkit-box-align:start;
+     -ms-flex-align:start;
+         align-items:flex-start;
+ -webkit-box-pack: justify;
+     -ms-flex-pack: justify;
+         justify-content: space-between;
  overflow: auto;
 }
 .daily-planner-fullpage .day-planner .day-planner-time{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   width: 49%;
   margin-bottom: 15px;
@@ -357,9 +436,15 @@ font-size: 21px;
 
 .motivationFull-page{
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 5rem;
 }
 .motivational-fullpage .motivation-container{
@@ -374,7 +459,8 @@ font-size: 21px;
   width: 100%;
   position: absolute;
   background-color: var(--tri1);
-  filter: blur(100px);
+  -webkit-filter: blur(100px);
+          filter: blur(100px);
   border-radius: 50px;
   scale: 1.15;
   z-index: 8;
@@ -389,15 +475,23 @@ border-radius: 30px;
 border: 6px solid  var(--tri2);
 }
 .motivation-1{
+   display: -webkit-box;
+   display: -ms-flexbox;
    display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 .motivation-1 h2{
    background-color: var(--tri2);
   padding: 30px;
   border-radius: 20px;
   font-size: 23px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   font-weight: 400;
   text-align: right;
@@ -413,15 +507,23 @@ border: 6px solid  var(--tri2);
   color: var(--sec);
 }
 .motivation-3{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 .motivation-3 h2{
   background-color: var(--tri2);
   padding: 30px;
   border-radius: 20px;
   font-size: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   font-weight: 400;
   text-align: right;
@@ -440,7 +542,9 @@ border: 6px solid  var(--tri2);
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
   text-align: center;
 }
 .pomo-timer h1{
@@ -453,35 +557,49 @@ border: 6px solid  var(--tri2);
   margin: 10px;
   border-radius: 5px;
   border: none;
-  box-shadow: 7px 7px 0px var(--black);
+  -webkit-box-shadow: 7px 7px 0px var(--black);
+          box-shadow: 7px 7px 0px var(--black);
+  -webkit-transition: all ease 0.1s;
+  -o-transition: all ease 0.1s;
   transition: all ease 0.1s;
   font-weight: 700;
 }
 .pomo-timer button:active{
- box-shadow: 0px 0px 0px var(--black);
+ -webkit-box-shadow: 0px 0px 0px var(--black);
+         box-shadow: 0px 0px 0px var(--black);
 }
 .pomodoro-fullpage .session{
   position: absolute;
   top: 20%;
   left: 50%;
-  transform: translate(-50%,0);
+  -webkit-transform: translate(-50%,0);
+      -ms-transform: translate(-50%,0);
+          transform: translate(-50%,0);
   background-color: var(--green);
   padding: 20px 40px;
   font-size: 25px;
   border-radius: 5px;
 }
 nav{
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 60px;
   width: 100%;
   padding: 10px;
   background-color: transparent;
 }
 .nav-in{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: var(--tri2);
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 10px 30px;
   border-radius: 10px;
 }
@@ -493,9 +611,14 @@ nav{
   padding: 10px 20px;
   border-radius: 10px;
   background-color: white;
+  -webkit-transition: all ease 0.9s;
+  -o-transition: all ease 0.9s;
   transition: all ease 0.9s;
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .theme h4{
 color: var(--sec);
