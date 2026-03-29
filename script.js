@@ -323,7 +323,8 @@ setInterval(timeDate,1000);
 }
 navbarFunctionality();
 
-let theme = document.querySelector(".theme");
+function changingTheme(){
+  let theme = document.querySelector(".theme");
 let rootElement = document.documentElement;
 let flag = 0;
 theme.addEventListener("click",  function(){
@@ -358,3 +359,6 @@ theme.addEventListener("click",  function(){
   
   
 })
+
+}
+changingTheme();
